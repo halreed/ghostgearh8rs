@@ -35,6 +35,7 @@ body {
 h1{
     background-color: #fe5a1d;
     width: 180px;
+    justify-content: center;
 }
 
 nav{
