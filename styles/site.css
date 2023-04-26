@@ -1,41 +1,45 @@
 body {
   font-family: sans-serif;
-  font-size: 120%;
-  color: white;
+  background-color: rgb(0, 0, 0);
+  color: rgb(72, 255, 0);
   font-weight: bold;
-  text-shadow:
-    -1px -1px 0 black,
-     1px -1px 0 black,
-    -1px  1px 0 black,
-     1px  1px 0 black;
 }
 
-.text-pad * {
+.grid * {
   padding: 10px;
   margin: 0px;
 }
 
-.row{
+.column{
     padding-top: 0px;
     padding-bottom: 0px;
     display: flex;
-    flex-direction: row;
+    flex-direction: ;
     flex-wrap: wrap;
 }
 
-.toprow{
+.column-left{
     justify-content: flex-start;
+    height: 200px;
 }
 
-.bottomrow{
+.column-middle{
+    justify-content: center;
+    height: 200px;
+}
+
+.column-right{
     justify-content: flex-end;
-    height: 500px;
+    height: 200px;
 }
 
 h1{
-    background-color: #fe5a1d;
-    width: 180px;
-    justify-content: center;
+    font-size: 300%;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
 }
 
 nav{
