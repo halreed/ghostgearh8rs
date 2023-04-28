@@ -5,7 +5,6 @@ body {
 }
 
 /* screen static effect */
-
 .tv-static {
     background-image: repeating-conic-gradient(rgb(145, 255, 0, 30%), black 0.000085%);
     animation: back 25s linear infinite;
@@ -29,20 +28,7 @@ body {
   align-items: baseline;
 }
 
-/* .column-left{
-    width: 33%;
-    flex-grow: 1;
-}
-
-.column-middle{
-    width: 33%;
-    flex-grow: 1;
-}
-
-.column-right{
-    
-} */
-
+/* player selection flexbox */
 .column{
     width: 33%;
     flex-grow: 1;
@@ -55,6 +41,47 @@ body {
     flex-grow: 2;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 20px rgba(255, 255, 255, 0.062), 0 0 30px rgba(255, 255, 255, 0.24), 0 0 40px #a6ff0060, 0 0 70px #91ff0059, 0 0 80px #73ff0080, 0 0 100px #b3ff0096, 0 0 150px #5eff00;
 }
+
+/* whale-grid flexbox */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 70%;
+  }
+  
+  .whale-item {
+    flex: 1 1 calc(33.33% - 10px);
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #caption-screen{
+    display: flex;
+    justify-content: flex-end;
+    background-color: black;
+    width: 30%;
+    font-size: 24px;
+    font-family:'Courier New', Courier, monospace;
+    /* color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #333;
+    animation: typing 2s steps(30, end) forwards; */
+  } 
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  .column2{
+    flex-grow: 7 3;
+}
+  
 
 h1{
     font-size: 300%;
@@ -140,3 +167,17 @@ div:after{
   }
 }
 
+/* animation for "player" icon as the mouse */
+#mouse-img {
+    position: absolute;
+    pointer-events: none;
+    max-height: 60px;
+}
+
+/* audio styling */
+/* #audio{
+    display: none;
+} */
+img#splash-audio{
+    height: 10px;
+}

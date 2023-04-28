@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>ghostgearh8rs</title>
+        <link rel="stylesheet" type="text/css" href="styles/site.css" media="all"/>
+    </head>
+    <body class="tv-static">
+        <h1>swim around...</h1>
+        <img src=images/whaleshit.png id="mouse-img"/>
+        <script>
+            var img = document.getElementById("mouse-img");
+            img.height = 60;
+            document.addEventListener("mousemove", function(event) {
+                var x = event.clientX + 10;
+                var y = event.clientY + 5;
+                img.style.left = x + "px";
+                img.style.top = y + "px";
+                // console.log(x);
+            });
+        </script>
+
+            <!-- // const words = ["Hello", "World", "How", "Are", "You", "Today?"];
+            // const typingText = document.getElementById("caption-screen");
+            // let index = 0;
+
+            // function type() {
+            // typingText.innerHTML = words[index];
+            // index++;
+            // if (index === words.length) {
+            //     index = 0;
+            // }
+            // setTimeout(type, 1000);
+            // }
+
+            // type(); -->
+
+        <div class="player-select">
+            <div class="column2 container">
+                <img src=images/lauratube.png class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+            </div>
+            <div class="column2" id="caption-screen"></div>
+          </div>
+    </body>
+
+    <!-- tag-along whale: follows mouse -->
+</html>
