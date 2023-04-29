@@ -7,6 +7,25 @@
     </head>
     <body class="tv-static">
         <h1>swim around...</h1>
+
+        <div class="player-select">
+            <div class="column2 container">
+                <img src=images/lauratube.png class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/temp-image.jpg class="whale-item"/>
+            </div>
+            <div class="column2" id="caption-screen"></div>
+          </div>
+
+        <!-- tag-along whale: follows mouse -->
         <img src=images/whaleshit.png id="mouse-img"/>
         <script>
             var img = document.getElementById("mouse-img");
@@ -16,7 +35,6 @@
                 var y = event.clientY + 5;
                 img.style.left = x + "px";
                 img.style.top = y + "px";
-                // console.log(x);
             });
         </script>
 
@@ -35,23 +53,5 @@
 
             // type(); -->
 
-        <div class="player-select">
-            <div class="column2 container">
-                <img src=images/lauratube.png class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-            </div>
-            <div class="column2" id="caption-screen"></div>
-          </div>
     </body>
-
-    <!-- tag-along whale: follows mouse -->
 </html>
