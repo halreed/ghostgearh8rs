@@ -8,12 +8,9 @@
     <body class="tv-static">
         <h1>swim around...</h1>
 
-        <div class="player-select">
-            <div class="column2 container">
-                <img src=images/lauratube.png class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
+        <div class="whale-box">
+            <div class="container">
+                <img src=images/lauratube.png class="whale-item" id="yellow-tubing" onclick='type(this.id)'/>
                 <img src=images/temp-image.jpg class="whale-item"/>
                 <img src=images/temp-image.jpg class="whale-item"/>
                 <img src=images/temp-image.jpg class="whale-item"/>
@@ -22,36 +19,127 @@
                 <img src=images/temp-image.jpg class="whale-item"/>
                 <img src=images/temp-image.jpg class="whale-item"/>
             </div>
-            <div class="column2" id="caption-screen"></div>
-          </div>
+            <div class="caption-column">
+                <div onmouseover='showText()' class="caption-screen glow hidden-hover" id="typing-text"></div>
+                <div class="caption-sources glow" id="source-text"></div>
+            </div>
+        </div>
+
+        <p id="hidden-text"> 
+            yellow-tubing:Shock tubing, a yellow plastic tubing resembling thin rope, is used to activate a detonation signal to underwater explosives. Shock tubing was used in a Boston Harbor dredging project that operated from June 2021 to January 2022. 
+            The yellow plastic tubing resembles thin rope, and it has been found in lengths ranging from 1 millimeter to 90 feet on beaches throughout Massachusetts and Rhode Island. (1)[
+            (1) Eric Williams for the Cape Cod Times, https://www.capecodtimes.com/story/news/2022/02/28/find-yellow-plastic-tubing-cape-cod-beach-inform-army-corp-of-engineers/6942507001/]*end*
+
+            <!-- <a href="https://www.capecodtimes.com/story/news/2022/02/28/find-yellow-plastic-tubing-cape-cod-beach-inform-army-corp-of-engineers/6942507001/" title="Finding yellow plastic tubing on Cape Cod beaches? Tell the Army">Finding yellow plastic tubing on Cape Cod beaches?</a>] -->
+
+            The origin of the shock tubing remained uncertain until Laura Ludwig, the Manager 
+            of the Center for Coastal Studies' Marine Debris and Plastic Program in Provincetown, 
+            MA, established a link between the dredging project and the shock tubing washing ashore.  
+            According to the Army Corps press release, the shock tube consists of low-density 
+            polyethylene. The material is considered safe for humans to touch, but small pieces may 
+            present health problems for animals if ingested. (2) Dredging can cause physical injury 
+            or death to marine life through collisions, noise production, and increased cloudiness 
+            of the water. (3)
+
+            To participate in beach cleanups around Cape Cod, Laura Ludwig can be contacted at 
+            lludwig@costalstudies.org. Please report any sightings of yellow shock tubing to Todd 
+            Randall of the U.S. Army Corps of Engineers by phone at (978)-318-8518 or by email at 
+            todd.a.randall@usace.army.mil. *end*
+        </p>
 
         <!-- tag-along whale: follows mouse -->
         <img src=images/whaleshit.png id="mouse-img"/>
         <script>
-            var img = document.getElementById("mouse-img");
-            img.height = 60;
-            document.addEventListener("mousemove", function(event) {
-                var x = event.clientX + 10;
-                var y = event.clientY + 5;
-                img.style.left = x + "px";
-                img.style.top = y + "px";
-            });
+            // mouse animation
+                var img = document.getElementById("mouse-img");
+                img.height = 60;
+                document.addEventListener("mousemove", function(event) {
+                    var x = event.clientX + 10;
+                    var y = event.clientY + 5;
+                    img.style.left = x + "px";
+                    img.style.top = y + "px";
+                });
+            // typing animation
+                function type(captionId) {
+                    //clear original content 
+                    document.getElementById("typing-text").textContent = '';
+                    document.getElementById("source-text").textContent = '';
+
+                    //Take text content from appropriate caption
+                    let fullText = document.getElementById('hidden-text').textContent;
+                    var caption = midString(fullText, captionId);
+                    var sources = '';
+
+                    //get any sources out
+                    if (caption.includes('[')){
+                        let iEnd = caption.indexOf('[');
+                        let iFinish = caption.indexOf(']');
+                        var sources = caption.substring(iEnd+1, iFinish);
+                        var caption = caption.substring(0, iEnd);
+                    }
+
+                    async function typeCaption(){
+                        let captionArray = caption.toString().split(' ');
+                        console.log(captionArray);
+                        for (let i=0; i<captionArray.length; i++){
+                            setTimeout( function() {
+                                addition = captionArray[i] + ' ';
+                                temp = document.getElementById('typing-text').textContent;
+                                temp += addition;
+                                let number = Math.floor(Math.random() * (200 - 50 + 1)) + 50;
+                                document.getElementById("typing-text").textContent = temp;
+                                }, (i+1)*50);
+                        }
+                    }
+
+                    function typeSources(){
+                        //add appropriate sources to source box
+                        var sourceBox = document.getElementById('source-text');
+
+                        let sourceArray = sources.toString().split(' ');
+                        console.log(sourceArray);
+                        for (let i=0; i<sourceArray.length; i++){
+                            setTimeout( function() {
+                                addition = sourceArray[i] + ' ';
+                                temp = document.getElementById('source-text').textContent;
+                                temp += addition;
+                                console.log(temp);
+                                document.getElementById('source-text').textContent = temp;
+                                }, (i+1)*50);
+                        }
+                    }
+                    
+                    async function run() {
+                        await typeCaption();
+                        typeSources();
+                    }
+
+                    run();
+                }
+
+                function midString(str, title){
+                    let iStart = str.indexOf(title);
+                    let halfDone = str.substring(iStart + title.length + 1);
+
+                    let iEnd = halfDone.indexOf('*end*');
+                    return halfDone.substring(0, iEnd);
+                }
+
+                function showText(){
+                    content = document.getElementById("typing-text").textContent;
+                    if (content.length === 0){
+                        let message = ['try', 'clicking', 'an', 'image', '.', '.', '.'];
+                        for (let i=0; i<message.length; i++){
+                            setTimeout( function() {
+                                addition = message[i] + ' ';
+                                temp = document.getElementById('typing-text').textContent;
+                                temp += addition;
+                                console.log(temp);
+                                document.getElementById('typing-text').textContent = temp;
+                                }, (i+1)*500);
+                        }
+                    }
+                }
         </script>
-
-            <!-- // const words = ["Hello", "World", "How", "Are", "You", "Today?"];
-            // const typingText = document.getElementById("caption-screen");
-            // let index = 0;
-
-            // function type() {
-            // typingText.innerHTML = words[index];
-            // index++;
-            // if (index === words.length) {
-            //     index = 0;
-            // }
-            // setTimeout(type, 1000);
-            // }
-
-            // type(); -->
-
     </body>
 </html>
