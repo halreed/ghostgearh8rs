@@ -6,18 +6,17 @@
         <link rel="stylesheet" type="text/css" href="styles/site.css" media="all"/>
     </head>
     <body class="tv-static">
+        <button onclick="goHome()">back to shore</button>
+        <button onclick="goResources()">resources</button>
+
         <h1>swim around...</h1>
 
         <div class="whale-box">
             <div class="container">
-                <img src=images/lauratube.png class="whale-item" id="yellow-tubing" onclick='type(this.id)'/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
-                <img src=images/temp-image.jpg class="whale-item"/>
+                <img src=images/yellow-tubing1.png class="whale-item" id="yellow-tubing" />
+                <img src=images/rope1.jpg class="whale-item" id="rope"/>
+                <img src=images/social1.jpg class="whale-item" id="social"/>
+                <img src=images/vessel1.png class="whale-item" id="vessel"/>
             </div>
             <div class="caption-column">
                 <div onmouseover='showText()' class="caption-screen glow hidden-hover" id="typing-text"></div>
@@ -25,31 +24,22 @@
             </div>
         </div>
 
-        <p id="hidden-text"> 
-            yellow-tubing:Shock tubing, a yellow plastic tubing resembling thin rope, is used to activate a detonation signal to underwater explosives. Shock tubing was used in a Boston Harbor dredging project that operated from June 2021 to January 2022. 
-            The yellow plastic tubing resembles thin rope, and it has been found in lengths ranging from 1 millimeter to 90 feet on beaches throughout Massachusetts and Rhode Island. (1)[
-            (1) Eric Williams for the Cape Cod Times, https://www.capecodtimes.com/story/news/2022/02/28/find-yellow-plastic-tubing-cape-cod-beach-inform-army-corp-of-engineers/6942507001/]*end*
+        <!-- <p id="hidden-text"> 
 
-            <!-- <a href="https://www.capecodtimes.com/story/news/2022/02/28/find-yellow-plastic-tubing-cape-cod-beach-inform-army-corp-of-engineers/6942507001/" title="Finding yellow plastic tubing on Cape Cod beaches? Tell the Army">Finding yellow plastic tubing on Cape Cod beaches?</a>] -->
-
-            The origin of the shock tubing remained uncertain until Laura Ludwig, the Manager 
-            of the Center for Coastal Studies' Marine Debris and Plastic Program in Provincetown, 
-            MA, established a link between the dredging project and the shock tubing washing ashore.  
-            According to the Army Corps press release, the shock tube consists of low-density 
-            polyethylene. The material is considered safe for humans to touch, but small pieces may 
-            present health problems for animals if ingested. (2) Dredging can cause physical injury 
-            or death to marine life through collisions, noise production, and increased cloudiness 
-            of the water. (3)
-
-            To participate in beach cleanups around Cape Cod, Laura Ludwig can be contacted at 
-            lludwig@costalstudies.org. Please report any sightings of yellow shock tubing to Todd 
-            Randall of the U.S. Army Corps of Engineers by phone at (978)-318-8518 or by email at 
-            todd.a.randall@usace.army.mil. *end*
-        </p>
+        </p> -->
 
         <!-- tag-along whale: follows mouse -->
         <img src=images/whaleshit.png id="mouse-img"/>
         <script>
+            //home button
+            function goHome(){
+                window.location.href = 'index.html';
+            }
+
+            function goResources(){
+                window.location.href = 'resources.html';
+            }
+
             // mouse animation
                 var img = document.getElementById("mouse-img");
                 img.height = 60;
@@ -59,69 +49,380 @@
                     img.style.left = x + "px";
                     img.style.top = y + "px";
                 });
-            // typing animation
-                function type(captionId) {
-                    //clear original content 
-                    document.getElementById("typing-text").textContent = '';
-                    document.getElementById("source-text").textContent = '';
 
-                    //Take text content from appropriate caption
-                    let fullText = document.getElementById('hidden-text').textContent;
-                    var caption = midString(fullText, captionId);
-                    var sources = '';
+            // Send text to image on click
+                // Note: I did each of these individually not out of efficiency but out of
+                // simplicity for retrieving text... hmph
+                const textContainer = document.getElementById("typing-text");
+                const referenceContainer = document.getElementById("source-text");
 
-                    //get any sources out
-                    if (caption.includes('[')){
-                        let iEnd = caption.indexOf('[');
-                        let iFinish = caption.indexOf(']');
-                        var sources = caption.substring(iEnd+1, iFinish);
-                        var caption = caption.substring(0, iEnd);
+                //yellowtubing
+                const yellowtubing = document.getElementById("yellow-tubing");
+                yellowtubing.addEventListener("click", () => {
+                    if (yellowtubing.src.match('yellow-tubing1.png')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'yellow-tubing1';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference1 = document.createElement('p');
+                                reference1.textContent = ('(1) Eric Williams for the Cape Cod Times (2022), ');
+                                const link1 = document.createElement('a');
+                                link1.href = 'https://www.capecodtimes.com/story/news/2022/02/28/find-yellow-plastic-tubing-cape-cod-beach-inform-army-corp-of-engineers/6942507001/';
+                                link1.textContent = "Finding yellow plastic tubing on Cape Cod beaches? Tell the Army";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference1);
+                                reference1.appendChild(link1);
+
+                                //change to next image
+                                yellowtubing.src = 'images/yellow-tubing2.png';
+                            });
+                    }
+                    else if (yellowtubing.src.match('yellow-tubing2.png')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'yellow-tubing2';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference2 = document.createElement('p');
+                                reference2.textContent = ('(2) Eric Williams for the Cape Cod Times (2022), ');
+                                const link2 = document.createElement('a');
+                                link2.href = 'https://www.capecodtimes.com/story/news/2022/02/28/find-yellow-plastic-tubing-cape-cod-beach-inform-army-corp-of-engineers/6942507001/';
+                                link2.textContent = "Finding yellow plastic tubing on Cape Cod beaches? Tell the Army";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference2);
+                                reference2.appendChild(link2);
+                                const brak = document.createElement('br');
+                                reference2.appendChild(brak);
+
+                                const reference3 = document.createElement('p');
+                                reference3.textContent = ('(3) Victoria Todd et al. (2015), ICES Journal of Marine Science 72(2). ');
+                                const link3 = document.createElement('a');
+                                link3.href = 'https://doi.org/10.1093/icesjms/fsu187';
+                                link3.textContent = "A Review of Impacts of Marine Dredging Activities on Marine Mammals.";
+                                referenceContainer.appendChild(reference3);
+                                reference3.appendChild(link3);
+
+                                //change to next image
+                                yellowtubing.src = 'images/yellow-tubing3.png';
+                            });
+                    }
+                    else {
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'yellow-tubing3';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                // clear references
+                                referenceContainer.innerHTML = '';
+
+                                //change to first image
+                                yellowtubing.src = 'images/yellow-tubing1.png';
+                            });
+                    }
+                });
+
+
+
+                //rope
+                const rope = document.getElementById("rope");
+                rope.addEventListener("click", () => {
+                    if (rope.src.match('rope1.jpg')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'rope1';
+                                caption = midString(text, name);
+                                console.log(caption);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference1 = document.createElement('p');
+                                reference1.textContent = ('(1) NOAA Fisheries, 18 February 2022. ');
+                                const link1 = document.createElement('a');
+                                link1.href = 'https://www.fisheries.noaa.gov/video/video-lose-rope-give-whales-hope';
+                                link1.textContent = "Lose the Rope, Give Whales Hope.";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference1);
+                                reference1.appendChild(link1);
+
+                                //change to next image
+                                rope.src = 'images/rope2.png';
+                            });
+                    }
+                    else if (rope.src.match('rope2.png')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'rope2';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference2 = document.createElement('p');
+                                reference2.textContent = ('(2) NOAA Fisheries, ');
+                                const link2 = document.createElement('a');
+                                link2.href = 'https://www.fisheries.noaa.gov/species/north-atlantic-right-whale#:~:text=NOAA%20Fisheries%20and%20our%20partners%20estimate%20that%20over%2085%20percent,fishing%20gear%20at%20least%20once';
+                                link2.textContent = "North Atlantic Right Whale";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference2);
+                                reference2.appendChild(link2);
+
+                                //change to next image
+                                rope.src = 'images/rope3.png';
+                            });
+                    }
+                    else {
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'rope3';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference3 = document.createElement('p');
+                                reference3.textContent = ('(3) NOAA Fisheries, 18 February 2022.');
+                                const link3 = document.createElement('a');
+                                link3.href = 'https://www.fisheries.noaa.gov/video/video-lose-rope-give-whales-hope';
+                                link3.textContent = "Lose the Rope, Give Whales Hope";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference3);
+                                reference3.appendChild(link3);
+
+                                //change to initial image
+                                rope.src = 'images/rope1.jpg';
+                            });
                     }
 
-                    async function typeCaption(){
-                        let captionArray = caption.toString().split(' ');
-                        console.log(captionArray);
-                        for (let i=0; i<captionArray.length; i++){
-                            setTimeout( function() {
-                                addition = captionArray[i] + ' ';
-                                temp = document.getElementById('typing-text').textContent;
-                                temp += addition;
-                                let number = Math.floor(Math.random() * (200 - 50 + 1)) + 50;
-                                document.getElementById("typing-text").textContent = temp;
-                                }, (i+1)*50);
-                        }
-                    }
+                });
 
-                    function typeSources(){
-                        //add appropriate sources to source box
-                        var sourceBox = document.getElementById('source-text');
 
-                        let sourceArray = sources.toString().split(' ');
-                        console.log(sourceArray);
-                        for (let i=0; i<sourceArray.length; i++){
-                            setTimeout( function() {
-                                addition = sourceArray[i] + ' ';
-                                temp = document.getElementById('source-text').textContent;
-                                temp += addition;
-                                console.log(temp);
-                                document.getElementById('source-text').textContent = temp;
-                                }, (i+1)*50);
-                        }
+
+                //social
+                const social = document.getElementById("social");
+                social.addEventListener("click", () => {
+                    if (social.src.match('social1.jpg')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'social1';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference1 = document.createElement('p');
+                                reference1.textContent = ('(1) IFAW, ');
+                                const link1 = document.createElement('a');
+                                link1.href = 'https://www.ifaw.org/animals/north-atlantic-right-whale#:~:text=North%20Atlantic%20right%20whales%20are,to%20a%20dozen%20or%20more';
+                                link1.textContent = "North Atlantic Right Whales";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference1);
+                                reference1.appendChild(link1);
+
+                                //change to next image
+                                social.src = 'images/social2.jpg';
+                            });
                     }
+                    else if (social.src.match('social2.jpg')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'social2';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference2 = document.createElement('p');
+                                reference2.textContent = ('(2) NOAA Fisheries, ');
+                                const link2 = document.createElement('a');
+                                link2.href = 'https://www.fisheries.noaa.gov/species/north-atlantic-right-whale';
+                                link2.textContent = "North Atlantic Right Whales";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference2);
+                                reference2.appendChild(link2);
+
+                                //change to initial image
+                                social.src = 'images/social1.jpg';
+                            });
+                    }
+                });
+
+
+                //vessels                
+                const vessel = document.getElementById("vessel");
+                vessel.addEventListener("click", () => {
+                    if (vessel.src.match('vessel1.png')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'vessel1';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference1 = document.createElement('p');
+                                reference1.textContent = ('(1) Rosalind M. Rolland et al., in Proceedings: Biological Sciences No. 1737. ');
+                                const link1 = document.createElement('a');
+                                link1.href = 'http://www.jstor.com/stable/41549547';
+                                link1.textContent = "Evidence that ship noise increases stress in right whales.";
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference1);
+                                reference1.appendChild(link1);
+
+                                //change to next image
+                                vessel.src = 'images/vessel2.jpg';
+                            });
+                    }
+                    else if (vessel.src.match('vessel2.jpg')){
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'vessel2';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference2 = document.createElement('p');
+                                reference2.textContent = ('(2) Rolland, et al., ');
+                                const link2 = document.createElement('a');
+                                link2.href = 'http://www.jstor.com/stable/41549547';
+                                link2.textContent = 'Evidence that ship noise increases stress';
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference2);
+                                reference2.appendChild(link2);
+
+                                //change to initial image
+                                vessel.src = 'images/vessel3.jpg';
+                            });
+                    }
+                    else{
+                        fetch("captions.txt")
+                            .then(response => response.text())
+                            .then(text => {
+                                //add caption
+                                let name = 'vessel3';
+                                caption = midString(text, name);
+                                textContainer.innerHTML = caption;
+
+                                //add references
+                                const reference3 = document.createElement('p');
+                                reference3.textContent = ('(3) Kristen Monsell, et al., Center for Biological Diversity. ');
+                                const link3= document.createElement('a');
+                                link3.href = 'https://biologicaldiversity.org/w/news/press-releases/biden-administration-sinks-emergency-petition-to-shield-right-whale-moms-calves-from-ship-strikes-2023-01-20/';
+                                link3.textContent = 'Biden Administration Sinks Emergency Petition to Shield Right Whale Moms, Calves From Vessel Strikes';
+
+                                referenceContainer.innerHTML = '';
+                                referenceContainer.appendChild(reference3);
+                                reference3.appendChild(link3);
+
+                                const reference4 = document.createElement('p');
+                                reference4.textContent = ('(4) Lovel Pratt et al., 18 April 2023. ');
+                                const link4 = document.createElement('a');
+                                link4.href = 'https://biologicaldiversity.org/w/news/press-releases/southern-resident-orca-buffer-bill-clears-washington-legislature-2023-04-18/#:~:text=SEATTLE%E2%80%94%20A%20bill%20to%20create,Southern%20Residents%2C%20beginning%20in%202025.';
+                                link4.textContent = "Southern Resident Orca Buffer Bill Clears Washington Legislature";
+                                referenceContainer.appendChild(reference4);
+                                reference3.appendChild(link4);
+                                
+
+                                //change to initial image
+                                vessel.src = 'images/vessel1.png';
+                            });
+                    }
+                });
+
+
+            // // typing animation
+            //     function type(captionId) {
+            //         //clear original content 
+            //         document.getElementById("typing-text").textContent = '';
+            //         document.getElementById("source-text").textContent = '';
+
+            //         //Take text content from appropriate caption
+            //         let fullText = document.getElementById('hidden-text').textContent;
+            //         var caption = midString(fullText, captionId);
+            //         var sources = '';
+
+            //         //get any sources out
+            //         if (caption.includes('[')){
+            //             let iEnd = caption.indexOf('[');
+            //             let iFinish = caption.indexOf(']');
+            //             var sources = caption.substring(iEnd+1, iFinish);
+            //             var caption = caption.substring(0, iEnd);
+            //         }
+
+            //         async function typeCaption(){
+            //             let captionArray = caption.toString().split(' ');
+            //             console.log(captionArray);
+            //             for (let i=0; i<captionArray.length; i++){
+            //                 setTimeout( function() {
+            //                     addition = captionArray[i] + ' ';
+            //                     temp = document.getElementById('typing-text').textContent;
+            //                     temp += addition;
+            //                     let number = Math.floor(Math.random() * (200 - 50 + 1)) + 50;
+            //                     document.getElementById("typing-text").textContent = temp;
+            //                     }, (i+1)*50);
+            //             }
+            //         }
+
+            //         function typeSources(){
+            //             //add appropriate sources to source box
+            //             var sourceBox = document.getElementById('source-text');
+
+            //             let sourceArray = sources.toString().split(' ');
+            //             console.log(sourceArray);
+            //             for (let i=0; i<sourceArray.length; i++){
+            //                 setTimeout( function() {
+            //                     addition = sourceArray[i] + ' ';
+            //                     temp = document.getElementById('source-text').textContent;
+            //                     temp += addition;
+            //                     console.log(temp);
+            //                     document.getElementById('source-text').textContent = temp;
+            //                     }, (i+1)*50);
+            //             }
+            //         }
                     
-                    async function run() {
-                        await typeCaption();
-                        typeSources();
-                    }
+            //         async function run() {
+            //             await typeCaption();
+            //             typeSources();
+            //             resolve();
+            //         }
 
-                    run();
-                }
+            //         run();
+            //     }
 
                 function midString(str, title){
                     let iStart = str.indexOf(title);
                     let halfDone = str.substring(iStart + title.length + 1);
 
-                    let iEnd = halfDone.indexOf('*end*');
+                    let iEnd = halfDone.indexOf('***');
                     return halfDone.substring(0, iEnd);
                 }
 
@@ -139,7 +440,8 @@
                                 }, (i+1)*500);
                         }
                     }
-                }
+                 }
         </script>
     </body>
 </html>
+    
