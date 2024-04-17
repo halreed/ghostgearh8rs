@@ -6,59 +6,40 @@
         <link rel="stylesheet" type="text/css" href="styles/site.css" media="all"/>
     </head>
 
-    <body class="tv-static">
-        <!-- <img src=images/sound-off.png id="sound"/> -->
-        <audio id="splash-audio" controls loop>
-            <source src="splash-audio.mp3" type="audio/mp3">
-        </audio>
-
-        <h1 class="glow">f*ck ghost gear >:p</h1>
-
-        <!-- <h2><em>choose your player!</em></h2> -->
-
-        <!-- player selection options -->
-        <main class="player-select glitch">
-            <div class="column">
-
-            </div>
-
-            <div class="column">   
-                <!-- <center>        
-                    <img src=images/boat.png alt="Pixel Boat">
-                </center>
-                <h3 class="select">lobsterman</h3> -->
-                <center>
-                    <a href=whale-splash.html><img src=images/whaleshit.png alt="Pixel Whale"></a>
-                </center>
-                <h3 class="select"><em>click to play</em></h3>
-            </div>
-
-            <div class="column">
-                <!-- <center>
-                    <img src=images/beachgoer.png alt="Pixel Beachgoer">
-                </center>
-                <h3 class="select">beachgoer(?????)</h3> -->
-            </div>
-        </main>
-            <!-- <script>
-                var img = document.getElementById("image");
-                var audio = document.getElementById("splash-audio");  
-                img.addEventListener('click', function() {
-                    let tsource = str(img.src);
-                    if (tsource.equals('images/sound-off.png')) {
-                        img.src = images/sound-on.png;
-                        sound.play();
-                    }
-                    else{
-                        img.src = images/sound-off.png;
-                        sound.off();
-                    }
-                    console.log(tsource);
-  
-                });    
-                audio.volume=1.0;
-            </script> -->
-    </body>   
+    <body>
+		<main class="index">
+			<h1>f*ck ghost gear!</h1>
+			<div class="player-select">
+				<a href="./whale-splash.html">
+					<img src="images/whaleshit.png" alt="pixelated whale player icon" id="whale">
+				</a>
+				<p>click to learn about the Right Whales' fight</p>
+				<p><em>...and how you can support them!</em></p>
+			</div>
+			<div class="tv-static"></div>
+		</main>
+		<footer>
+			<audio>
+				<source src="splash-audio.mp3" type="audio/mp3">
+			</audio>
+			<nav>
+			 <!-- Nav images made using https://www.pixilart.com/-->
+				<button class="nav">
+					<img src="images/sound-off.png" alt="sound off icon">
+				</button>
+				<button class="nav">
+					<a href="./index.html">
+						<img src="images/home.png" alt="home icon">
+					</a>
+				</button>
+				<button class="nav">
+					<a href="./info.html">
+						<img src="images/info.png" alt="more info icon">
+					</a>
+				</button>
+			</nav>
+		</footer>
+	</body>
 </html>
 
 
