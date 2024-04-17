@@ -1,4 +1,4 @@
-#cuttyhunk-netart ("_ghostgearh8ers_")
+<h1>cuttyhunk-netart ("_ghostgearh8ers_")</h1>
 
     I.     Description
     II.    Updates
@@ -6,17 +6,17 @@
     IV.    References
     V.     Image Citations
 
-###I. Description
+<h3>I. Description</h3>
 _ghostgearh8ers_ is a student project developed in May 2024 following a collaboration between the Center for Coastal Studies, a group of Cornell students led by Prof. Annie Lewandowski, and local residents and artists to clean up lobstering "ghost gear" on the beaches of Cuttyhunk Island.
 
 This site seeks to communicate what we learned through this experience-- particularly the threats posed to North American Right Whales by current commercial fishing practices, and what each of us can do to help.
 
-###II. Updates
+<h3>II. Updates</h3>
 Last updated on 04/20/2024 to refresh speed and code readability. Mobile breakpoint in development; currently only functional in full screen desktop.
 
 Original release in May 2023.
 
-###III. Contributors
+<h3>III. Contributors</h3>
 _Design_: Sophie Cianfarani & Hal Reed
 
 _Web Development_: Hal Reed
@@ -27,7 +27,7 @@ _Music_: Sophie Cianfarani
 
 _Mentors_: Annie Lewandowski (Cornell University), Laura Ludwig (Center for Coastal Studies), Anne Cramer, Josh Biggs
 
-###IV. References
+<h3>IV. References</h3>
 "Borrow From The Northeast Fisheries Science Center Gear Library." NOAA Fisheries, 2023.
 https://www.fisheries.noaa.gov/new-england-mid-atlantic/marine-mammal-protection/borrow-northeast-fisheries-science-center-gear
 
@@ -63,7 +63,7 @@ Williams, Eric. "Finding yellow plastic tubing on Cape Cod beaches?" Cape Cod Ti
 
 
 
-###V. Image Citations
+<h3>V. Image Citations</h3>
 
 _Cargo Shipping:_
 - shipping1.png - cargo ship on ocean. <a href="https://pxhere.com/en/photo/625869">Pxhere.com</a>, 2017. CC0 Public Domain.
